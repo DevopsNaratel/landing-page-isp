@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // --- KONFIGURASI DOCKER ---
-        DOCKER_IMAGE = 'diwamln/calculator' 
+        DOCKER_IMAGE = 'diwamln/landing-page-isp' 
         DOCKER_CREDS = 'docker-hub' 
         
         // --- KONFIGURASI GIT (REPO MANIFEST) ---
@@ -12,8 +12,8 @@ pipeline {
         
         // --- PATH FILE MANIFEST ---
         // Pastikan file deployment.yaml ini sudah ada di repo manifest Anda
-        MANIFEST_TEST_PATH = 'calculator/dev/deployment.yaml'
-        MANIFEST_PROD_PATH = 'calculator/prod/deployment.yaml' 
+        MANIFEST_TEST_PATH = 'landing-page-isp/dev/deployment.yaml'
+        MANIFEST_PROD_PATH = 'landing-page-isp/prod/deployment.yaml' 
     }
 
     stages {
@@ -63,7 +63,7 @@ pipeline {
                             sh """
                                 git add .
                                 if ! git diff-index --quiet HEAD; then
-                                    git commit -m 'Deploy Calculator: ${env.BASE_TAG} [skip ci]'
+                                    git commit -m 'Deploy landing-page-isp: ${env.BASE_TAG} [skip ci]'
                                     git push origin main
                                 else
                                     echo "No changes detected."
@@ -94,7 +94,7 @@ pipeline {
                             sh """
                                 git add .
                                 if ! git diff-index --quiet HEAD; then
-                                    git commit -m 'Promote Calculator to PROD: ${env.BASE_TAG} [skip ci]'
+                                    git commit -m 'Promote landing-page-isp to PROD: ${env.BASE_TAG} [skip ci]'
                                     git push origin main
                                 else
                                     echo "No changes detected."
